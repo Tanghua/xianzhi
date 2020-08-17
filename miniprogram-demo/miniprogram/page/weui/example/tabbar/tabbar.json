@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "mp-tabbar": "../../components/tabbar/tabbar"
-  },
-  "navigationBarTitleText": "tabbar"
-
-}

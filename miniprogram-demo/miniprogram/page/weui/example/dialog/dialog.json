@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "mp-dialog": "../../components/dialog/dialog"
-  },
-  "navigationBarTitleText": "dialog"
-
-}
