@@ -20,17 +20,51 @@
 .product-right{
   width: 100%;
   height:180rpx;
-  margin:34rpx 0 0 30rpx;
+  margin:34rpx 0 0 0rpx;
   display: inline-flex;
   flex-flow: column;
   justify-content: space-between;
 }
 /* 商品名 */
 .product-title{
-  font-size:30rpx;
+  font-size:35rpx;
   font-weight:400;
   color:#161514;
 }
+.product-price{
+  right: 15rpx;
+  position: absolute;
+  width: 100rpx;
+  font-size:35rpx;
+  font-weight:400;
+  color:#FF5251;
+}
+.supplier-name,.birth-time{
+  font-size: 33rpx;
+  font-weight: 400;
+}
+.supplier-address{
+  right: 15rpx;
+  position: absolute;
+  width: 300rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  text-align: right;
+}
+.sales-details{
+  right: 15rpx;
+  position: absolute;
+  width: 200rpx;
+  font-size: 30rpx;
+}
+/*
+.product-label{
+  background-color: green;
+}
+.product-content{
+  background-color: gray;
+}
+*/
 /* 市场价样式 */
 .market-price-container{
   margin-bottom: -10rpx;
@@ -55,11 +89,7 @@
   font-weight:400;
   color:#424242;
 }
-.discount-price-symbol,.discount-price{
-  font-size:30rpx;
-  font-weight:400;
-  color:#FF5251;
-}
+
 .go{
   width:156rpx;
   height:56rpx;
