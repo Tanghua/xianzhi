@@ -8,29 +8,25 @@
     </view>
   </view>
   <!-- 商品展示右边 -->
+  
   <view class='product-right'>  
     <!-- 商品基本信息上部分 -->
-    <view  ><text class='product-title'>{{product.product_name}}</text></view>
+    <view  class="product-label">
+      <text class='product-title'>{{product.product_name}}</text>
+      <text class='product-price' >￥{{product.product_price}}/只</text>
+    </view>
     <!-- 商品基本信息下部分 -->
     <view class='product-content' >
-      <!-- 市场价  -->
-      <view class='market-price-container'>
-         <text>市场价:</text>
-         <text>￥</text>
-         <text>{{product.product_price}}</text>
+      <view>
+        <text class="birth-time">{{product.birth_time}}</text>
+        <text class="sales-details">{{product.sales_details}}</text>
       </view>
-      <!-- 优惠价 -->
-      <view class='discount-price-container'>
-        <view class='discount-price-left'>
-           <text class='discount-price-desc' >优惠价:</text>
-           <text class='discount-price-symbol' >￥</text>
-           <text class='discount-price' >{{product.product_sell_price}}</text>
-        </view>
-        <view class='discount-price-right' bind:tap='productDetails'>
-            <button class='go'>立即购买</button>
-        </view>
+      <view>
+        <text class="supplier-name">{{product.supplier_name}}</text>
+        <text class="supplier-address">{{product.supplier_address}}</text>
       </view>
     </view>
   </view>
+
 </view>
 

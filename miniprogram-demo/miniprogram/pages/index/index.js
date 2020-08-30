@@ -12,14 +12,41 @@ Page({
     interval: 3000, // 自动切换时间间隔
     duration: 1000, // 滑动动画时长
     circular: true,//是否采用衔接滑动 
+    /** 
     themes: [
       { theme_icon: 'images/theme@1.png', theme_name: '新品糖果', theme_type: 1 },
       { theme_icon: 'images/theme@2.png', theme_name: '精品果干', theme_type: 2 },
       { theme_icon: 'images/theme@3.png', theme_name: '美味坚果', theme_type: 3 },
       { theme_icon: 'images/theme@4.png', theme_name: '优质推荐', theme_type: 4 },
     ],
-    banners: [],
-    products: []
+    */
+    themes: [
+      { theme_icon: 'images/theme@1.png', theme_name: '鸭苗', theme_type: 1 },
+      { theme_icon: 'images/theme@2.png', theme_name: '饲料', theme_type: 2 },
+      { theme_icon: 'images/theme@3.png', theme_name: '禽具', theme_type: 3 },
+    ],
+    banners: [
+      { image: "images/001.png", product_id: 1},
+      { image: "images/002.png", product_id: 2}
+    ],
+    products: [
+      { product_name: "一日龄出壳苗 大种白番鸭苗", 
+        product_img: "../../pages/index/images/003.png", 
+        product_price: "5", 
+        birth_time: "2020/07/12", 
+        supplier_name: "蒋国强孵化厂", 
+        supplier_address: "铅山/上饶/江西",
+        sales_details: "10000人已付款"
+      },
+      { product_name: "一日龄出壳苗 麻鸭苗", 
+        product_img: "../../pages/index/images/003.png", 
+        product_price: "10", 
+        birth_time: "2020/07/17", 
+        supplier_name: "蒋国强孵化厂", 
+        supplier_address: "铅山/上饶/江西",
+        sales_details: "10000人已付款"
+      }
+    ]
 
   },
 
@@ -84,9 +111,12 @@ Page({
   },
   themeNavigation: function (event) {
     let theme_type = indexModel.getDataSet(event, "themetype")
+    /**
     wx.navigateTo({
       url: '../theme/theme?theme_type=' + theme_type,
     })
+    */
+    
   },
   _init: function () {
     //轮播图
