@@ -55,6 +55,24 @@ Page({
    */
   onLoad: function (options) {
     this._init()
+const db = wx.cloud.database({
+  //这个是环境ID不是环境名称
+  env:'nirvanaluffy-zwa7i'
+  })
+  // 查询当前用户所有的 counters
+  db.collection('order').get({
+  success: res => {
+   console.log('[数据库] [查询记录] 成功 zth order res: ', res)
+  },
+  fail: err => {
+   wx.showToast({
+     icon: 'none',
+     title: '查询记录失败'
+   })
+   console.error('[数据库] [查询记录] 失败：', err)
+  }
+  })
+  console.log('xxxx ne:')
   },
 
   /**
