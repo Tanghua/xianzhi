@@ -20,5 +20,12 @@ Component({
    */
   methods: {
 
+    xiadan: function(e) {
+      console.log("下单")
+      wx.navigateTo({
+        url: '../../pages/order/order',
+      })
+    },
+
   }
 })

@@ -20,16 +20,21 @@
         </view>
       </block>
     </view>
-    <view class="theme-calendar">
+    <view class="theme-calendar" wx:if="{{isSearch == false}}">
       <text>出苗日期</text>
       <image src="./images/calendar.png"></image>
     </view>
-    <view class="theme-search" hidden="true">
-      
+    <view class="theme-search" wx:elif="{{isSearch == true}}">
+      <input maxlength="10" type="text" confirm-type="search"/>
+      <image src="./images/search.jpg"/>
     </view>
   </view>
   <!-- 分割线 -->
+  <!--
   <view class='dividing-line'></view>
+  -->
+  <view class="select-calendar" hidden="true">
+  </view>
   <!-- 3、最新上线 -->
   <scroll-view class='products-latest-container' scroll-y="true">
     <title-bar-comp title='最新上线'></title-bar-comp>
