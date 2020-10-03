@@ -46,8 +46,8 @@ Page({
         supplier_address: "铅山/上饶/江西",
         sales_details: "10000人已付款"
       }
-    ]
-
+    ],
+    isSearch: false
   },
 
   /**
@@ -61,10 +61,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-
-
-
 
   },
 
@@ -116,7 +112,20 @@ Page({
       url: '../theme/theme?theme_type=' + theme_type,
     })
     */
-    
+    if (theme_type == 1) {
+      this.data.isSearch = false
+      this.setData({
+        isSearch: this.data.isSearch
+      })
+      console.log('isSearch', this.data.isSearch)
+    } else {
+      this.data.isSearch = true
+      this.setData({
+        isSearch: this.data.isSearch
+      })
+      console.log('isSearch', this.data.isSearch)
+    }
+    console.log('themeNavigation......', event, theme_type)
   },
   _init: function () {
     //轮播图
@@ -136,6 +145,9 @@ Page({
       this.setData({
         products: res.result.data.data
       })
+    })
+    this.setData({
+      isSearch: this.data.isSearch
     })
   },
   // 跳转商品详情

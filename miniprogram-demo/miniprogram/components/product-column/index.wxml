@@ -1,6 +1,6 @@
 <!--components/product-column/index.wxml-->
  <!-- 商品展示左右分隔 product-left product-left product-right  -->
-<view class='container'>
+<view class='container'  bindtap="xiadan">
   <!-- 商品展示左边 -->
   <view class='product-left'>
     <view class='product-img' >

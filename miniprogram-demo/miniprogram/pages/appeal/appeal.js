@@ -1,21 +1,18 @@
-// pages/my/my.js
+// pages/appeal/appeal.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    my_infos: [
-      {label: "个人信息"},
-      {label: "订单信息"},
-      {label: "客户服务"}
-    ],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**

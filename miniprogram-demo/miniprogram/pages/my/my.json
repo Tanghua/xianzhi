@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "title-bar-comp": "/components/title-bar/index"
+  }
 }

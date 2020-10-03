@@ -1,2 +1,23 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="container">
+  <view class="my-title">
+    <view class="my-title-left">
+      <image class="my-icon" src="./images/search.jpg"/>
+      <text>武夷道人</text>
+    </view>
+    <view class="my-title-right">
+      <text>养殖户</text>
+      <text>1000只麻鸭在养，出壳50天</text>
+    </view>
+  </view>
+  <view class='dividing-line'></view>
+  <block wx:for="{{my_infos}}" wx:key="key">
+    <view class="my-list">
+      <image class="my-list-icon" src="./images/search.jpg"/>
+      <view class="my-list-text">{{item.label}}</view>
+      <image class="my-list-arrow" src="./images/arrow.png"/>
+    </view>
+    <view class='dividing-line'></view>
+  </block>
+  
+</view>

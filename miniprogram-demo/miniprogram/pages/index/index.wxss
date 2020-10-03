@@ -55,11 +55,35 @@
   height: 80rpx;
   margin-top: 55rpx;
 }
+.select-calendar{
+  width: 80%;
+  height: 300rpx;
+  z-index: 100;
+  position: absolute;
+  right: 15rpx;
+  margin-top: 540rpx;
+  background-color: green;
+}
 .theme-search{
-  width: 20%;
+  width: 30%;
   height: 100%;
   margin: 0 auto;
   text-align: center;
+  display: inline-flex;
+  justify-content: space-between;
+}
+.theme-search input{
+  width: 150rpx;
+  height: 28rpx;
+  background-color: white;
+  margin-top: 55rpx;
+  margin-left: 15rpx;
+}
+.theme-search image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 55rpx;
+  margin-left: 5rpx;
 }
 .theme-box{
   display: flex;

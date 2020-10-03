@@ -1,21 +1,42 @@
-// pages/my/my.js
+// pages/mobile/mobile.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    my_infos: [
-      {label: "个人信息"},
-      {label: "订单信息"},
-      {label: "客户服务"}
-    ],
+    btnstate: "default",
+    disabled: true,
+    number: ""
+  },
+
+  mobileBlur: function(e) {
+    // e 事件对象
+    // e.detail 触发事件的组件对象
+    var value = e.detail.value
+    if (value != "") {
+      this.setData({
+        disabled: false, 
+        btnstate: "primary",
+        number: value
+      })
+    } else {
+      this.setData({
+        disabled: true,
+        btnstate: "default"
+      })
+    }
+  },
+
+  nextStep: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**

@@ -1,0 +1,47 @@
+/* pages/login/login.wxss */
+.content{
+  margin-top: 40rpx;
+}
+.account{
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
+  width: 90%;
+}
+
+.title{
+  font-weight: bold;
+  margin-right: 30rpx;
+}
+
+.hr{
+  border: 1rpx solid #cccccc;
+  opacity: 0.2;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.see {
+  position: absolute;
+  right: 20rpx;
+}
+
+.btn{
+  width: 90%;
+  margin-top: 40rpx;
+  color: #999999;
+}
+
+.operate{
+  display: flex;
+  flex-direction: row;
+}
+
+.operate view{
+  margin: 0 auto;
+  margin-top: 40rpx;
+  font-size: 14px;
+  color: #333333;
+}

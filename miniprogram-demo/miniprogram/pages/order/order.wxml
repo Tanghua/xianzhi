@@ -1,2 +1,53 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="content">
+  <!-- 地址栏 -->
+  <view class="address">
+    <view>
+      <view class="address_title">
+        广东深圳
+      </view>
+      <view class="address_details">
+        南山区
+      </view>
+      <view class="user_info">
+        <text class="user_name">武夷道人</text>
+        <text class="user_number">139****8888</text>
+      </view>
+    </view>
+    <image src="../index/images/search.jpg" style="width:15px;height:10px"></image>
+  </view>
+
+  <view class="hr"></view>
+
+  <!-- 商品信息和购买数量 -->
+  <view class="goods_info">
+    <view>
+      蒋国强孵化厂
+    </view>
+    <view class="goods_details">
+      <image src="../index/images/003.png"></image>
+      <view class="goods_describe">
+        <text class="goods_name">一日龄出壳苗 大种白番鸭苗</text>
+        <view class="goods_order">
+          <text>￥5</text>
+          <view class="goods_number">
+            <text>20</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交订单 -->
+  <view class="order">
+    <view class="order_title">
+      <text class="order_left">商品金额</text>
+      <text class="order_right">￥119.00</text>
+    </view>
+    <view class="order_content">
+      <text class="order_money">￥99.00</text>
+      <button class="order_but">提交订单</button>
+    </view>
+  </view>
+
+</view>

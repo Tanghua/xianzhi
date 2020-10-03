@@ -1,0 +1,36 @@
+<!--pages/login/login.wxml-->
+<view class="content">
+
+  <!--用户-->
+  <view class="account">
+    <view class="title">账号</view>
+    <view class="num">
+      <input bindinput="accountInput" placeholder="用户名/邮箱/手机号" placeholder-style="color:#999999;"/>
+    </view>
+  </view>
+
+  <view class="hr"></view>
+  <!-- 密码 -->
+  <view class="account">
+    <view class="title">密码</view>
+    <view class="num">
+      <input bindinput="pwBlur" placeholder="请输入密码" password placeholder-style="color:#999999;" />
+    </view>
+    <view class="see">
+      <image src="./images/see.jpg" style="width:35px;height:22px"></image>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="hr"></view>
+  <!-- 登录按钮 -->
+  <button class="btn" type="{{btnstate}}" disabled="{{disabled}}" 
+    bindtap="login" style="width:90%;">登录</button>
+
+  <!-- 注册导航 -->
+  <view class="operate">
+    <view><navigator url="../mobile/mobile">手机快速注册</navigator></view>
+    <view><navigator url="../company/company">企业用户注册</navigator></view>
+    <view><navigator url="../appeal/appeal">找回密码</navigator></view>
+  </view>
+
+</view>
