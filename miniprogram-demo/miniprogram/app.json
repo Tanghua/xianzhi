@@ -1,7 +1,10 @@
 {
   "pages": [
+      "pages/login/login",
+      "pages/mobile/mobile",
+      "pages/company/company",
+      "pages/appeal/appeal",
       "pages/index/index",
-      "pages/theme/theme",
       "pages/category/category",
       "pages/product/product",
       "pages/cart/cart",

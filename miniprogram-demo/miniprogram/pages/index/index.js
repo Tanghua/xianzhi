@@ -1,6 +1,13 @@
 // pages/index/index.js
 import { IndexModel } from "../../models/IndexModel.js"
 let indexModel = new IndexModel()
+
+// 数据库
+const db = wx.cloud.database({
+  //这个是环境ID不是环境名称
+  env:'nirvanaluffy-zwa7i'
+  })
+
 Page({
 
   /**
@@ -47,32 +54,77 @@ Page({
         sales_details: "10000人已付款"
       }
     ]
-
   },
+    // 数据库查询示例
+    queryData: function() {
+      // 查询当前用户的所有order信息
+      db.collection('order').get({
+            success: res => {
+            console.log('[数据库] [查询记录] 成功 zth order res: ', res)
+      },
+           fail: err => {
+           wx.showToast({icon: 'none', title: '查询记录失败'})
+           console.error('[数据库] [查询记录] 失败：', err)
+      }
+      })
+    },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this._init()
-const db = wx.cloud.database({
-  //这个是环境ID不是环境名称
-  env:'nirvanaluffy-zwa7i'
-  })
-  // 查询当前用户所有的 counters
-  db.collection('order').get({
-  success: res => {
-   console.log('[数据库] [查询记录] 成功 zth order res: ', res)
-  },
-  fail: err => {
-   wx.showToast({
-     icon: 'none',
-     title: '查询记录失败'
-   })
-   console.error('[数据库] [查询记录] 失败：', err)
-  }
-  })
-  console.log('xxxx ne:')
+    wx.getUserInfo({
+      success:(data)=>{
+        console.log(data)
+      },
+      fail(){
+        console.log("failed to get usersinfo")
+      }
+    });
+    
+    //var _this = this
+      // 查询当前用户的所有order信息
+      db.collection('order').get({
+        success: res => {
+        console.log('[数据库] [查询记录] 成功 zth order res: ', res)
+      },
+       fail: err => {
+       wx.showToast({icon: 'none', title: '查询记录失败'})
+       console.error('[数据库] [查询记录] 失败：', err)
+      }
+     });
+      // add 当前用户的一条order信息
+      /*
+      db.collection('order').add({
+        data: {
+          buyId: "111",
+          createTime: new Date("2020-10-02"),
+          orderStatus: 0,
+          orderTotalPrice: 2015,
+          orderUnitPrice: 5856,
+          productId: 8970,
+          productNum: 9098,
+          updateTime: new Date("2020-10-02")
+        }
+      }).then(res=>{
+          console.log(res);
+      });*/
+      // update 当前用户的一条order信息
+      db.collection('order').doc("d81cd5415f76d36d00ce5a815bc70b08").update({
+        data:{
+          buyId: "88888"
+        }
+      }).then(res=>{
+          console.log(res);
+      });
+       // delete 当前用户的一条order信息
+       /*
+       db.collection('order').doc("d81cd5415f76d36d00ce5a815bc70b08").remove({
+         
+      }).then(res=>{
+          console.log(res);
+      }); */         
   },
 
   /**
