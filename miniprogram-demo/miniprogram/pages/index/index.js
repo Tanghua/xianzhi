@@ -19,14 +19,6 @@ Page({
     interval: 3000, // 自动切换时间间隔
     duration: 1000, // 滑动动画时长
     circular: true,//是否采用衔接滑动 
-    /** 
-    themes: [
-      { theme_icon: 'images/theme@1.png', theme_name: '新品糖果', theme_type: 1 },
-      { theme_icon: 'images/theme@2.png', theme_name: '精品果干', theme_type: 2 },
-      { theme_icon: 'images/theme@3.png', theme_name: '美味坚果', theme_type: 3 },
-      { theme_icon: 'images/theme@4.png', theme_name: '优质推荐', theme_type: 4 },
-    ],
-    */
     themes: [
       { theme_icon: 'images/theme@1.png', theme_name: '鸭苗', theme_type: 1 },
       { theme_icon: 'images/theme@2.png', theme_name: '饲料', theme_type: 2 },
@@ -125,6 +117,19 @@ Page({
       }).then(res=>{
           console.log(res);
       }); */         
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: 'UserInfoApi',
+        // 传给云函数的参数
+        data: {
+          "action": "getUserInfoByUid",
+          "uid": "18680333650"
+        },
+      })
+      .then(res => {
+        console.log("callFunction UserInfoApi getUserInfoByUid res:" + res) 
+      })
+      .catch(console.error)     
   },
 
   /**
