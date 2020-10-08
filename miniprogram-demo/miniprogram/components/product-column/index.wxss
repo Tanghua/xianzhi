@@ -34,7 +34,7 @@
 .product-price{
   right: 15rpx;
   position: absolute;
-  width: 100rpx;
+  width: 150rpx;
   font-size:35rpx;
   font-weight:400;
   color:#FF5251;

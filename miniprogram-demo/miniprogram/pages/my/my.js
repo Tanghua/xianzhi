@@ -5,11 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    my_infos: [
-      {label: "个人信息"},
-      {label: "订单信息"},
-      {label: "客户服务"}
-    ],
+    
+  },
+
+  userInfo: function(e) {
+    wx.navigateTo({
+      url: '../userInfo/userInfo',
+    })
+  },
+
+  orderInfo: function(e) {
+    wx.navigateTo({
+      url: '../orderInfo/orderInfo',
+    })
   },
 
   /**

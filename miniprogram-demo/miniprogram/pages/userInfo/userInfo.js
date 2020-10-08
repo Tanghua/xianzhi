@@ -1,35 +1,17 @@
-// pages/mobile/mobile.js
+// pages/userInfo/userInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    btnstate: "default",
-    disabled: true,
-    number: ""
-  },
-
-  mobileBlur: function(e) {
-    // e 事件对象
-    // e.detail 触发事件的组件对象
-    var value = e.detail.value
-    if (value != "") {
-      this.setData({
-        disabled: false, 
-        btnstate: "primary",
-        number: value
-      })
-    } else {
-      this.setData({
-        disabled: true,
-        btnstate: "default"
-      })
+    userInfo: {
+      id: "001",
+      role: "养殖户",
+      phone: "13567475783",
+      address: "江西省上饶市铅山县新滩乡",
+      wechatName: ""
     }
-  },
-
-  nextStep: function() {
-
   },
 
   /**

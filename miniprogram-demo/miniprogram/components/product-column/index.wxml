@@ -13,7 +13,7 @@
     <!-- 商品基本信息上部分 -->
     <view  class="product-label">
       <text class='product-title'>{{product.product_name}}</text>
-      <text class='product-price' >￥{{product.product_price}}/只</text>
+      <text class='product-price' >￥{{product.product_price}}{{product.product_unit}}</text>
     </view>
     <!-- 商品基本信息下部分 -->
     <view class='product-content' >

@@ -29,23 +29,31 @@ Page({
       { image: "images/002.png", product_id: 2}
     ],
     products: [
-      { product_name: "一日龄出壳苗 大种白番鸭苗", 
+      { 
+        product_id: 1,
+        product_name: "一日龄出壳苗 大种白番鸭苗", 
         product_img: "../../pages/index/images/003.png", 
         product_price: "5", 
+        product_unit: "/只",
         birth_time: "2020/07/12", 
         supplier_name: "蒋国强孵化厂", 
         supplier_address: "铅山/上饶/江西",
         sales_details: "10000人已付款"
       },
-      { product_name: "一日龄出壳苗 麻鸭苗", 
+      { 
+        product_id: 2,
+        product_name: "一日龄出壳苗 麻鸭苗", 
         product_img: "../../pages/index/images/003.png", 
         product_price: "10", 
+        product_unit: "/只",
         birth_time: "2020/07/17", 
         supplier_name: "蒋国强孵化厂", 
         supplier_address: "铅山/上饶/江西",
         sales_details: "10000人已付款"
       }
-    ]
+    ],
+    serverData: [],
+    showType: "鸭苗"
   },
     // 数据库查询示例
     queryData: function() {
@@ -69,14 +77,23 @@ Page({
     wx.getUserInfo({
       success:(data)=>{
         console.log(data)
+        this.onLoadInfo(options)
       },
       fail(){
         console.log("failed to get usersinfo")
+        wx.navigateTo({
+          url: '../login/login',
+        })
       }
     });
     
+    
+  },
+
+  onLoadInfo: function(options) {
     //var _this = this
       // 查询当前用户的所有order信息
+      /*
       db.collection('order').get({
         success: res => {
         console.log('[数据库] [查询记录] 成功 zth order res: ', res)
@@ -86,6 +103,7 @@ Page({
        console.error('[数据库] [查询记录] 失败：', err)
       }
      });
+     */
       // add 当前用户的一条order信息
       /*
       db.collection('order').add({
@@ -103,6 +121,7 @@ Page({
           console.log(res);
       });*/
       // update 当前用户的一条order信息
+      /*
       db.collection('order').doc("d81cd5415f76d36d00ce5a815bc70b08").update({
         data:{
           buyId: "88888"
@@ -110,6 +129,7 @@ Page({
       }).then(res=>{
           console.log(res);
       });
+      */
        // delete 当前用户的一条order信息
        /*
        db.collection('order').doc("d81cd5415f76d36d00ce5a815bc70b08").remove({
@@ -127,19 +147,73 @@ Page({
         },
       })
       .then(res => {
-        console.log("callFunction UserInfoApi getUserInfoByUid res:" + res) 
+        console.log("callFunction UserInfoApi getUserInfoByUid res:", res) 
       })
-      .catch(console.error)     
+      .catch(err => {
+        console.log("callFunction...error", err)
+      })     
+      this.updateData()
+  },
+
+  updateData: function() {
+    if (this.data.serverData.length <= 0) {
+      wx.cloud.callFunction({
+        name: 'ProductInfoApi',
+        data: {
+          "action": "getAllProductInfo"
+        },
+      }).then(res => {
+        console.log("callFunction ProductInfoApi getAllProductInfo res:", res)
+        var datas = res.result.data
+        this.setData({
+          serverData: datas
+        })
+        this.filterData(datas)
+      }).catch(err => {
+        console.log("callFunction ProductInfoApi error:", err)
+      })
+    } else {
+      this.filterData(this.data.serverData)
+    }
+  },
+
+  filterData: function(datas) {
+    var tmpArr = []
+    var curType = this.data.showType
+    for (var j = 0, len = datas.length; j < len; j++) {
+      var data = datas[j]
+      console.log("item", data)
+      if (curType != data.productType) {
+        continue
+      }
+      var object = Object()
+      object.product_id = data.productId
+      object.product_name = data.productDetail + " " + data.productName
+      object.product_img = "../../pages/index/images/003.png"
+      object.product_price = data.productPrice
+      if (curType == "鸭苗") {
+        object.product_unit = "/只"
+      } else if(curType == "饲料") {
+        object.product_unit = "/斤"
+      } else if(curType == "禽具") {
+        object.product_unit = ""
+      }
+      object.birth_time = data.birthTime
+      object.supplier_name = data.supplierName
+      object.supplier_address = data.supplierAddress
+      object.sales_details = data.productStock
+      tmpArr.push.apply(tmpArr, [object])
+    }
+    console.log("tmpArr", tmpArr)
+    this.setData({
+      products: tmpArr
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-
-
-
 
   },
 
@@ -186,12 +260,35 @@ Page({
   },
   themeNavigation: function (event) {
     let theme_type = indexModel.getDataSet(event, "themetype")
-    /**
-    wx.navigateTo({
-      url: '../theme/theme?theme_type=' + theme_type,
-    })
-    */
-    
+    console.log("themeNavigation", theme_type)
+    switch (theme_type) {
+      case 1: {
+        this.setData({
+          showType: "鸭苗"
+        })
+        break
+      }
+      case 2: {
+        this.setData({
+          showType: "饲料"
+        })
+        break
+      }
+      case 3: {
+        this.setData({
+          showType: "禽具"
+        })
+        break
+      }
+      default: {
+        this.setData({
+          showType: "鸭苗"
+        })
+        break
+      }
+    }
+    console.log("showType", this.data.showType)
+    this.updateData()
   },
   _init: function () {
     //轮播图
@@ -215,7 +312,9 @@ Page({
   },
   // 跳转商品详情
   productDetails: function (event) {
-    this._navProductDetail(event.detail.productId)
+    let product_id = event.currentTarget.dataset.productid
+    console.log("productDetails", product_id)
+    this._navProductDetail(product_id)
   },
   productBanner: function (event) {
     let product_id = indexModel.getDataSet(event, "productid")

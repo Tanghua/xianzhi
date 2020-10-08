@@ -1,4 +1,4 @@
-// pages/appeal/appeal.js
+// pages/orderInfo/orderInfo.js
 Page({
 
   /**
