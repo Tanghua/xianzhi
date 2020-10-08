@@ -19,7 +19,11 @@ Page({
     payment_deposit: 1,
     payment_full: 2,
     numbers: 1,
-    payment_mode: 2
+    payment_mode: 2,
+    userInfo : {
+      uid : "001",
+      nickName : "001"
+    }
   },
 
   numberReduce: function(e) {
@@ -59,9 +63,25 @@ Page({
 
   placeOrder: function(e) {
     console.log("placeOrder")
-    wx.showToast({
-      title: '未开放',
-      icon: "none"
+    wx.cloud.callFunction({
+      name: "OrderInfoApi",
+      data: {
+        "action" : "addOrderInfo",
+        "pid" : this.data.product.product_id,
+        "uid" : this.data.userInfo.uid
+      },
+    }).then(res => {
+      console.log("callFunction OrderInfoApi addOrderInfo:", res)
+      var object = Object()
+      object.pid = this.data.product.product_id
+      object.uid = this.data.userInfo.uid
+      object.numbers = this.data.numbers
+      var orderInfo = JSON.stringify(object)
+      wx.navigateTo({
+        url: '../orderInfo/orderInfo?orderInfo=' + orderInfo,
+      })
+    }).catch(err => {
+      console.log("callFunction OrderInfoApi addOrderInfo:", err)
     })
   },
 
@@ -71,6 +91,41 @@ Page({
   onLoad: function (options) {
     var value = options.productId
     console.log("value:", value)
+    wx.getUserInfo({
+      success:(data)=>{
+        console.log(data)
+        var nickName = data.userInfo.nickName
+        console.log("getUserInfo nickName:", nickName)
+        wx.cloud.callFunction({
+          name : "UserInfoApi",
+          data : {
+            "action" : "getUserInfoByNickName",
+            "nickName" : nickName
+          }
+        }).then(res =>{
+          console.log("callFunction UserInfoApi getUserInfoByNickName:", res)
+          var data = res.result.data
+          if (data != undefined &&  data.length > 0) {
+            var userInfo = data[data.length - 1]
+            this.setData({
+              userInfo : {
+                uid : userInfo.uid,
+                nickName : userInfo.webChatNickName
+              }
+            })
+            console.log("userInfo:", this.data.userInfo)
+          }
+        }).catch(err => {
+          console.log("callFunction UserInfoApi getUserInfoByNickName:", err)
+        })
+      },
+      fail(){
+        console.log("failed to get usersinfo")
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
+    })
     wx.cloud.callFunction({
       name: 'ProductInfoApi',
       data: {
