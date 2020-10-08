@@ -1,2 +1,39 @@
 <!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<!--pages/order/order.wxml-->
+<view class="content">
+
+  <image class="goods_icon" src="{{product.product_img}}"></image>
+  <!-- 商品信息和购买数量 -->
+  <view class="goods_info">
+    <image class="goods_info_icon" src="{{product.product_img}}"></image>
+    <view>
+      <view class="goods_price">￥{{product.product_price}}{{product.product_unit}}</view>
+      <view class="goods_id">商品编号: {{product.product_id}}</view>
+    </view>
+  </view>
+
+  <view class="goods_number">
+    数量
+  </view>
+
+  <view class="goods_number_layout">
+    <view class="goods_reduce" bindtap="numberReduce">-</view>
+    <view class="input_bg">
+      <view>
+        <input bindinput="numberInput" value="{{numbers}}" type="number"/>
+      </view>
+    </view>
+    <view class="goods_plus" bindtap="numberPlus">+</view>
+    <radio-group class="radio-group" bindchange="paymentChage">
+        <radio value="{{payment_deposit}}" checked="false">支付定金</radio>
+        <radio value="{{payment_full}}" checked="true">全额支付</radio>
+      </radio-group>
+  </view>
+
+  <!-- 提交订单 -->
+  <view class="goods_bottom">
+    <button class="place_order" bindtap="placeOrder">确定</button>
+  </view>
+
+</view>
+

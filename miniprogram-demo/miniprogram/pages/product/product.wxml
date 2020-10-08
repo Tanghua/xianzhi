@@ -1,2 +1,25 @@
 <!--pages/product/product.wxml-->
-<text>pages/product/product.wxml</text>
+<view class="content">
+
+  <image class="photo" src="{{product.product_img}}"></image>
+
+  <view class="price-layout">
+    <text class="product-price">￥{{product.product_price}}{{product.product_unit}}</text>
+  </view>
+
+  <scroll-view class='product-layout' scroll-y="true">
+    <view class="product-name-layout">
+      <text>自营</text>
+      <text class="product-name">{{product.product_name}}</text>
+    </view>
+    <view class="product-date-layout">
+      <text>出苗日</text>
+      <text class="product-time">{{product.birth_time}}</text>
+    </view>
+  </scroll-view>
+
+  <view class="product-bottom">
+    <button class="btn-buys" bindtap="buyNow">立即购买</button>
+  </view>
+
+</view>

@@ -1,0 +1,16 @@
+<!--pages/userInfo/userInfo.wxml-->
+<view class="content">
+  <view>
+    <view>角色</view>
+    <view></view>
+  </view>
+  <view>
+    <view>注册电话</view>
+    <view></view>
+  </view>
+  <view>
+    <view>地址信息</view>
+    <view></view>
+  </view>
+  <view class="hr"></view>
+</view>

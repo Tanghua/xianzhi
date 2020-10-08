@@ -49,6 +49,20 @@ Page({
     }
   },
 
+  bindGetUserInfo: function(e) {
+    console.log(e.detail.userInfo)
+    if (e.detail.userInfo) {
+      wx.switchTab({
+        url: '../index/index',
+      })
+    } else {
+      wx.showToast({
+        title: '请先授权',
+        icon: "none"
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

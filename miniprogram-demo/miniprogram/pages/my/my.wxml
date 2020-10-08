@@ -11,13 +11,34 @@
     </view>
   </view>
   <view class='dividing-line'></view>
-  <block wx:for="{{my_infos}}" wx:key="key">
-    <view class="my-list">
-      <image class="my-list-icon" src="./images/search.jpg"/>
-      <view class="my-list-text">{{item.label}}</view>
-      <image class="my-list-arrow" src="./images/arrow.png"/>
+
+  <view class="item">
+    <view class="my-item">
+      <image class="my-item-icon" src="./images/search.jpg"/>
+      <view class="my-item-text">个人资料</view>
+      <image class="my-item-arrow" src="./images/arrow.png" bindtap="userInfo"/>
     </view>
-    <view class='dividing-line'></view>
-  </block>
+    <view class='line'></view>
+  </view>
+
+  <view class="item">
+    <view class="my-item">
+      <image class="my-item-icon" src="./images/search.jpg"/>
+      <view class="my-item-text">订单信息</view>
+      <image class="my-item-arrow" src="./images/arrow.png" bindtap="orderInfo"/>
+    </view>
+    <view class='line'></view>
+  </view>
+
+  <view class="item">
+    <view class="my-item">
+      <image class="my-item-icon" src="./images/search.jpg"/>
+      <view class="my-item-text">客户服务</view>
+      <view class="my-item-number">0793-XXXX</view>
+    </view>
+    <view class='line'></view>
+  </view>
+
+  <view class='dividing-line' style="margin-top:30px;"></view>
   
 </view>

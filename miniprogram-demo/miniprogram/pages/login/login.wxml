@@ -1,7 +1,24 @@
 <!--pages/login/login.wxml-->
 <view class="content">
 
-  <!--用户-->
+  <!-- 如果只是展示用户头像昵称，可以使用 <open-data/>组件 -->
+  <view  class="userAvatarUrl">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="userNickName">
+    <open-data type="userNickName" ></open-data>
+  </view>
+  
+  <!-- 需要使用button来授权登录 -->
+  <button class="userInfoBtn" open-type="getUserInfo" 
+    bindgetuserinfo="bindGetUserInfo">授权登录</button>
+
+</view>
+
+<!--
+<view class="content">
+
+
   <view class="account">
     <view class="title">账号</view>
     <view class="num">
@@ -10,7 +27,7 @@
   </view>
 
   <view class="hr"></view>
-  <!-- 密码 -->
+
   <view class="account">
     <view class="title">密码</view>
     <view class="num">
@@ -20,16 +37,17 @@
       <image src="./images/see.jpg" style="width:35px;height:22px"></image>
     </view>
   </view>
-  <!-- 分割线 -->
+
   <view class="hr"></view>
-  <!-- 登录按钮 -->
+
   <button class="btn" type="{{btnstate}}" disabled="{{disabled}}" 
     bindtap="login" style="width:90%;">登录</button>
 
-  <!-- 注册导航 -->
+
   <view class="operate">
     <view><navigator url="../mobile/mobile">手机快速注册</navigator></view>
     <view><navigator url="../company/company">企业用户注册</navigator></view>
     <view><navigator url="../appeal/appeal">找回密码</navigator></view>
   </view>
 </view>
+-->

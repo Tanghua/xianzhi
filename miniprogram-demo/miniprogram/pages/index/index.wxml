@@ -33,8 +33,9 @@
   <!-- 3、最新上线 -->
   <scroll-view class='products-latest-container' scroll-y="true">
     <title-bar-comp title='最新上线'></title-bar-comp>
-    <block wx:for="{{products}}" wx:key="key">
-      <product-cloumn-comp product="{{item}}" bind:productDetails="productDetails"></product-cloumn-comp>
+    <block wx:for="{{products}}" wx:key="key" >
+      <product-cloumn-comp product="{{item}}" data-productid="{{item.product_id}}" 
+        bind:productDetails="productDetails" bindtap="productDetails"></product-cloumn-comp>
     </block>
   </scroll-view>
 </view>
