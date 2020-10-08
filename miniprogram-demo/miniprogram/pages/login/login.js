@@ -50,10 +50,30 @@ Page({
   },
 
   bindGetUserInfo: function(e) {
-    console.log(e.detail.userInfo)
+    var userInfo = e.detail.userInfo
+    console.log()
     if (e.detail.userInfo) {
-      wx.switchTab({
-        url: '../index/index',
+      wx.cloud.callFunction({
+        name: "UserInfoApi",
+        data: {
+          "action" : "getUserInfoByNickName",
+          "nickName" : userInfo.nickName
+        }
+      }).then(res => {
+        console.log("callFunction UserInfoApi getUserInfoByNickName", res)
+        var data = res.result.data
+        console.log("callFunction UserInfoApi getUserInfoByNickName", data)
+        if (data != undefined &&  data.length > 0) {
+          wx.switchTab({
+            url: '../index/index',
+          })
+          this.addUserInfo(userInfo)
+        } else {
+          this.addUserInfo(userInfo)
+        }
+      }).catch(err => {
+        console.log("callFunction UserInfoApi getUserInfoByNickName", err)
+        this.addUserInfo(userInfo)
       })
     } else {
       wx.showToast({
@@ -61,6 +81,28 @@ Page({
         icon: "none"
       })
     }
+  },
+
+  addUserInfo: function(userInfo) {
+    wx.cloud.callFunction({
+      name: "UserInfoApi",
+      data: {
+        "action" : "addUserInfo",
+        "uid" : "9527",
+        "nickName" : userInfo.nickName
+      }
+    }).then(res => {
+      console.log("callFunction UserInfoApi addUserInfo:", res)
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }).catch(err => {
+      console.log("callFunction UserInfoApi addUserInfo:", err)
+      wx.showToast({
+        title: '添加用户失败请稍后尝试',
+        icon: "none"
+      })
+    })
   },
 
   /**

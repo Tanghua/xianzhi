@@ -1,2 +1,7 @@
 <!--pages/orderInfo/orderInfo.wxml-->
-<text>pages/orderInfo/orderInfo.wxml</text>
+<view>
+  <view>{{orderInfo.uid}}</view>
+  <view>{{orderInfo.pid}}</view>
+  <view>{{orderInfo.numbers}}</view>
+  <view>{{ordetDetails}}</view>
+</view>
