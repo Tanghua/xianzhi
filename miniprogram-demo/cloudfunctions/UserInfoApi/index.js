@@ -24,7 +24,8 @@ exports.main = async (event, context) => {
       return result
     }    
     case 'addUserInfo': {
-      return 
+      result = addUserInfo(event)
+      return result
     }
     case 'updateUserInfo': {
       return 
@@ -66,5 +67,26 @@ async function getUserInfoByNickName(event) {
     console("getUserInfoByNickName e:" + e)
   }
   console.log("getUserInfoByNickName result:" + result);
+  return result
+}
+
+async function addUserInfo(event) {
+  var uid = event.uid
+  var webChatNickName = event.nickName
+  var result = {}
+  try {
+    console.log("addUserInfo: uid " + uid + " webChatNickName " + webChatNickName);
+    result = await db.collection('userInfo').add({
+        data: {
+          uid: uid,
+          webChatNickName: webChatNickName
+        }
+      }).then(res=>{
+          console.log(res);
+      });
+  }catch(e) {
+    console("addUserInfo e:" + e)
+  }
+  console.log("addUserInfo result:" + result);
   return result
 }
