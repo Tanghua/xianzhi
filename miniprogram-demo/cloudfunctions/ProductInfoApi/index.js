@@ -10,8 +10,14 @@ const db = cloud.database({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  console.log(event)
   var result = {}
   switch (event.action) {
+    case 'getAllProductInfo': {
+      result = getAllProductInfo(event)
+      console.log("func main result:" + result)
+      return result
+    }
     case 'getProductInfoByPid': {
       result = getProductInfoByPid(event)
       console.log("func main result:" + result)
@@ -32,6 +38,18 @@ exports.main = async (event, context) => {
     default: {
       return
     }
+  }
+
+  async function getAllProductInfo(event) {
+    var result = {}
+    try {
+      console.log("getAllProductInfo start");
+      result = await db.collection('product').get();
+    }catch(e) {
+      console("getAllProductInfo e:" + e)
+    }
+    console.log("getAllProductInfo result:" + result);
+    return result
   }
 
   async function getProductInfoByPid(event) {
