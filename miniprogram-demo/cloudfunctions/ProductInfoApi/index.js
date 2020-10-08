@@ -56,7 +56,7 @@ exports.main = async (event, context) => {
     var pid = event.pid
     var result = {}
     try {
-      console.log("getProductInfoByPid: " + uid);
+      console.log("getProductInfoByPid: " + pid);
       result = await db.collection('product').where({
         productId: pid
       }).get();

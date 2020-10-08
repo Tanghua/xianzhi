@@ -18,6 +18,11 @@ exports.main = async (event, context) => {
       console.log("func main result:" + result)
       return result
     }
+    case 'getUserInfoByNickName': {
+      result = getUserInfoByNickName(event)
+      console.log("func main result:" + result)
+      return result
+    }    
     case 'addUserInfo': {
       return 
     }
@@ -46,5 +51,20 @@ async function getUserInfoByUid(event) {
     console("getUserInfoByUid e:" + e)
   }
   console.log("getUserInfoByUid result:" + result);
+  return result
+}
+
+async function getUserInfoByNickName(event) {
+  var nickName = event.nickName
+  var result = {}
+  try {
+    console.log("getUserInfoByNickName: " + nickName);
+    result = await db.collection('userInfo').where({
+      webChatNickName: nickName
+    }).get();
+  }catch(e) {
+    console("getUserInfoByNickName e:" + e)
+  }
+  console.log("getUserInfoByNickName result:" + result);
   return result
 }
